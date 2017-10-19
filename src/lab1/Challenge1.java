@@ -17,9 +17,14 @@ import javax.swing.JOptionPane;
  */
 public class Challenge1 {
     private static final int LAST_NAME_IDX = 1;
+    
+    
 
     // this method responsible for output
     public static void main(String[] args) {
+        String line = "a.b.c.d.e";
+        int count = line.length() - line.replace(".", "").length();
+        System.out.println(count);
         Challenge1 app = new Challenge1();
         
         String fullName = JOptionPane.showInputDialog("Enter full name (use Format: first last):");
@@ -33,7 +38,15 @@ public class Challenge1 {
     // is null or empty. Throw the exception to the calling method. and handle
     // it there.
     public String extractLastName(String fullName) {
-        String lastName = null;
+        int count = fullName.length() - fullName.replace(" ", "").length();
+        if(count > 1 || count < 1){
+            throw new IllegalArgumentException("Sorry seperate only first and last nae with a space");
+        }
+        
+        
+        String[] parts = fullName.split(" ");
+        String firstName = parts[0]; // First Name
+        String lastName = parts[1]; // Last Name
         
         // Your code goes here.
         
