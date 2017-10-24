@@ -15,12 +15,22 @@ public class InputOutputGui {
         nameService = new NameService();
     }
 
-    public void startConversation() {
+    public final void startConversation() {
         
         String fullName = JOptionPane.showInputDialog("Enter full name:");
-        String lastName = nameService.extractLastName(fullName);
+        String lastName = "";
+        
+        try{
+        lastName = nameService.extractLastName(fullName);
+  
         String msg = "Your last name is: " + lastName;
         JOptionPane.showMessageDialog(null, msg);
+        }catch (IllegalArgumentException iae){
+            System.out.println(iae.getMessage());
+            
+        }catch(NullPointerException npe){
+            System.out.println(npe.getMessage());
+        }
         
     }
      

@@ -18,11 +18,18 @@ public class NameService {
      * @throws YourCustomExceptionName if fullName is null or empty or has
      * fewer than two parts
      */
-    public String extractLastName(String fullName) {
-        String lastName = null;
-        
-        // put your code here
-        
+    public final String extractLastName(String fullName) throws IllegalArgumentException, NullPointerException {
+        int countSpace = fullName.length() - fullName.replace(" ", "").length();
+
+        if (countSpace > 1 || countSpace == 0) {
+            throw new IllegalArgumentException("Error: A valid entry must be the first name follow by last name seperated by ONLY one space.");
+        }
+
+        String[] parts = fullName.split(" ");
+
+        String lastName = parts[1]; // Last Name
+
+        // Your code goes here.
         return lastName;
     }
     

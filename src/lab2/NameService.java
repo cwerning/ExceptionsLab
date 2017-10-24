@@ -1,5 +1,7 @@
 package lab2;
 
+import lab3.NameIsNullEmptyOrInvalidException;
+
 /**
  * This class provides various services relating to name manipulation.
  * No output should be performed here.
@@ -18,12 +20,18 @@ public class NameService {
      * @throws IllegalArgumentException if fullName is null or empty or has 
      * fewer than two parts
      */
-    public String extractLastName(String fullName) {
-        String lastName = null;
-        
-        // write your code here to extract the lastName and store in the
-        // above local variable
-        
+    public final String extractLastName(String fullName) throws NameIsNullEmptyOrInvalidException, NullPointerException {
+        int countSpace = fullName.length() - fullName.replace(" ", "").length();
+
+        if (countSpace > 1 || countSpace == 0) {
+            throw new NameIsNullEmptyOrInvalidException();
+        }
+
+        String[] parts = fullName.split(" ");
+
+        String lastName = parts[1]; // Last Name
+
+        // Your code goes here.
         return lastName;
     }
     
